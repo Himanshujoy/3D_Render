@@ -96,11 +96,13 @@ if (selectEl) {
 // read toggle controls (rotation and dz translation)
 const rotateEl = document.getElementById("rotateToggle")
 const dzEl = document.getElementById("dzToggle")
+const vertexEl = document.getElementById("Vertex")
 let enableRotation = rotateEl ? rotateEl.checked : true
 let enableDZ = dzEl ? dzEl.checked : false
+let enableVertex = vertexEl ? vertexEl.checked : false
 if (rotateEl) rotateEl.addEventListener("change", e => enableRotation = e.target.checked)
 if (dzEl) dzEl.addEventListener("change", e => enableDZ = e.target.checked)
-
+if (vertexEl) vertexEl.addEventListener("change", e => enableVertex = e.target.checked)
 // Function to translate points along the Z-axis
 function translateZ(points, dz)
 {
@@ -117,10 +119,12 @@ function frame()
 
     clear()
     // for Drawing Points
-    // for(const p of points3D)
-    // {
-    //     drawPoint(screen(project3Dto2D(translateZ(rotate_Yaxis(p, angle), dz))))
-    // }
+    if (enableVertex) {
+        for(const p of points3D)
+        {
+            drawPoint(screen(project3Dto2D(translateZ(rotate_Yaxis(p, angle), dz))))
+        }
+    }
 
     // for Drawing Edges
     for(const e of edges)
