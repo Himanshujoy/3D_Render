@@ -93,6 +93,14 @@ if (selectEl) {
     })
 }
 
+// read toggle controls (rotation and dz translation)
+const rotateEl = document.getElementById("rotateToggle")
+const dzEl = document.getElementById("dzToggle")
+let enableRotation = rotateEl ? rotateEl.checked : true
+let enableDZ = dzEl ? dzEl.checked : false
+if (rotateEl) rotateEl.addEventListener("change", e => enableRotation = e.target.checked)
+if (dzEl) dzEl.addEventListener("change", e => enableDZ = e.target.checked)
+
 // Function to translate points along the Z-axis
 function translateZ(points, dz)
 {
@@ -104,8 +112,8 @@ function frame()
 {
     // Update Logic
     const dtime = 1 / FPS;
-    // dz += dtime * 1 // for outward movement
-    angle += dtime * Math.PI; // for rotation
+    if (enableDZ) dz += dtime * 0.5
+    if (enableRotation) angle += dtime * Math.PI; // for rotation
 
     clear()
     // for Drawing Points
