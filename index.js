@@ -2,6 +2,8 @@
 const BACKGROUND_COLOR = "#101010"
 const RECTANGLE_COLOR = "#50FF50"
 
+import { objects, getObject } from "./data.js"
+
 // Setup canvas
 console.log(game)
 game.width = 800
@@ -69,29 +71,27 @@ const FPS = 60
 let dz = 1;
 let angle = 0;
 
-// Define 3D points of a cube
-const points3D = [
-    {x:  0.25, y:  0.25, z:  0.25},
-    {x: -0.25, y:  0.25, z:  0.25},
-    {x:  0.25, y: -0.25, z:  0.25},
-    {x: -0.25, y: -0.25, z:  0.25},
+// populate simple dropdown and select initial object
+const selectEl = document.getElementById("objectSelect")
+if (selectEl) {
+    Object.keys(objects).forEach(name => {
+        const opt = document.createElement("option")
+        opt.value = name
+        opt.textContent = name
+        selectEl.appendChild(opt)
+    })
+}
 
-    {x:  0.25, y:  0.25, z: -0.25},
-    {x: -0.25, y:  0.25, z: -0.25},
-    {x:  0.25, y: -0.25, z: -0.25},
-    {x: -0.25, y: -0.25, z: -0.25},
-]
+let { points3D, edges } = getObject("cube")
+if (selectEl) selectEl.value = "cube"
 
-// Define edges by connecting points
-const edges = [
-    [0,1],[0,2],[0,4],
-    [1,3],[1,5],
-    [2,3],[2,6],
-    [3,7],
-    [4,5],[4,6],
-    [5,7],
-    [6,7],
-]
+if (selectEl) {
+    selectEl.addEventListener("change", (e) => {
+        const obj = getObject(e.target.value)
+        points3D = obj.points3D
+        edges = obj.edges
+    })
+}
 
 // Function to translate points along the Z-axis
 function translateZ(points, dz)

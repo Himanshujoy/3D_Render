@@ -1,2 +1,13 @@
+<style>
+	/* Keep the controls above the canvas */
+	#controls { position: relative; z-index: 10; margin-bottom: 8px; }
+	canvas { display: block; }
+</style>
+
+<div id="controls">
+	<label for="objectSelect">Object:</label>
+	<select id="objectSelect"></select>
+</div>
+
 <canvas id="game"></canvas>
-<script src="index.js"></script>
+<script type="module" src="index.js"></script>
