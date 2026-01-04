@@ -35,5 +35,36 @@ function project3Dto2D({x, y, z})
     }
 }
 
-clear()
-drawPoint(screen(project3Dto2D({x: 0, y: 0, z: 1})))
+const FPS = 60
+let dz = 1;
+
+const points3D = [
+    {x:  0.5, y:  0.5, z:  0.5},
+    {x: -0.5, y:  0.5, z:  0.5},
+    {x:  0.5, y: -0.5, z:  0.5},
+    {x: -0.5, y: -0.5, z:  0.5},
+
+    {x:  0.5, y:  0.5, z: -0.5},
+    {x: -0.5, y:  0.5, z: -0.5},
+    {x:  0.5, y: -0.5, z: -0.5},
+    {x: -0.5, y: -0.5, z: -0.5},
+]
+
+function translateZ(points, dz)
+{
+    return {x: points.x, y: points.y, z: points.z + dz}
+}
+
+function frame()
+{
+    const dtime = 1 / FPS;
+    dz += dtime * 1
+    clear()
+    for(const p of points3D)
+    {
+        drawPoint(screen(project3Dto2D(translateZ(p, dz))))
+    }
+    setTimeout(frame, 1000 / FPS);
+}
+
+setTimeout(frame, 1000 / FPS);
