@@ -1,6 +1,6 @@
 # 3D Render
 
-Small demo project containing a basic 3D rendering example using vanilla JS. Inspired by [Tsoding](https://www.youtube.com/watch?v=qjWkNZ0SXfo) and added features such as a data file for storing points and edges for different models, and dropdown for which model to render, and toggles for rotation, translation, and display vertex
+Small demo project containing a basic 3D rendering example using vanilla JS. Inspired by [Tsoding](https://www.youtube.com/watch?v=qjWkNZ0SXfo) and added features such as a data file for storing points and edges for different models, and dropdown for which model to render, and toggles for rotation, translation, display vertex, and colour picker
 
 ## Files
 

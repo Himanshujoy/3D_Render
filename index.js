@@ -1,6 +1,6 @@
 // Constants for colors
 const BACKGROUND_COLOR = "#101010"
-const RECTANGLE_COLOR = "#50FF50"
+let RECTANGLE_COLOR = "#50FF50"
 
 import { objects, getObject } from "./data.js"
 
@@ -93,16 +93,21 @@ if (selectEl) {
     })
 }
 
-// read toggle controls (rotation and dz translation)
+// read toggle controls (rotation and dz translation) and color picker
 const rotateEl = document.getElementById("rotateToggle")
 const dzEl = document.getElementById("dzToggle")
 const vertexEl = document.getElementById("Vertex")
+const colorEl = document.getElementById("colorPicker")
 let enableRotation = rotateEl ? rotateEl.checked : true
 let enableDZ = dzEl ? dzEl.checked : false
 let enableVertex = vertexEl ? vertexEl.checked : false
 if (rotateEl) rotateEl.addEventListener("change", e => enableRotation = e.target.checked)
 if (dzEl) dzEl.addEventListener("change", e => enableDZ = e.target.checked)
 if (vertexEl) vertexEl.addEventListener("change", e => enableVertex = e.target.checked)
+if (colorEl) {
+    RECTANGLE_COLOR = colorEl.value || RECTANGLE_COLOR
+    colorEl.addEventListener("input", e => RECTANGLE_COLOR = e.target.value)
+}
 // Function to translate points along the Z-axis
 function translateZ(points, dz)
 {
