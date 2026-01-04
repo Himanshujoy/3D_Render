@@ -13,12 +13,27 @@ function clear()
     ctx.fillRect(0, 0, game.width, game.height)
 }
 
-function drawPoint(x,y)
+function drawPoint({x,y})
 {
     const size = 20
     ctx.fillStyle = RECTANGLE_COLOR
-    ctx.fillRect(x, y, size, size)
+    ctx.fillRect(x - size / 2, y - size / 2, size, size)
+}
+
+function screen(point)
+{
+    point.x = (point.x + 1) * game.width / 2
+    point.y = (1 - point.y) * game.height / 2
+    return point
+}
+
+function project3Dto2D({x, y, z})
+{
+    return {
+        x: x / z,
+        y: y / z,
+    }
 }
 
 clear()
-drawPoint(100, 100)
+drawPoint(screen(project3Dto2D({x: 0, y: 0, z: 1})))

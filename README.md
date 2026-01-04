@@ -1,4 +1,4 @@
-# 3D_Render
+# 3D Render
 
 Small demo project containing a basic 3D rendering example using vanilla JS.
 
@@ -34,3 +34,5 @@ http-server -c-1 . 8000
 ## Author
 
 Himanshu Srivastava
+
+Implimented 3D Renderer by [Tsoding](https://www.youtube.com/watch?v=qjWkNZ0SXfo)
